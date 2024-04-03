@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>2.html태그의 이벤트속성에 작성</title>
+  <style>
+    body {
+     width: 100%;
+     height: 100vh;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+    }
+    .contact{
+     width: 500px;
+     text-align: center;
+    }
+    img{
+     width: 400px;
+    }
+   </style>
+</head>
+
+<body>
+  <h1 id="word">동그리에 마우스 올려 보세요!</h1>
+  <div class="content">
+    <!-- html태그의 이벤트속성에 스크립트 작성 -->
+    <img src="media/동그리1.jpg" alt="image" onmouseover="this.src = 'media/동그리2.jpg'" onmouseout="this.src = 'media/동그리1.jpg'">
+  </div>
+  <script>
+  </script>
+</body>
+</html>
