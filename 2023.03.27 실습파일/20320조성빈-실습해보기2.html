@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>실습해보기2-적정 몸무게 구하기 </title>
+</head>
+
+<body>
+  <script>
+    // 적정체중 계산식: 적정 체중 = (본인 신장 – 100) x 0.9
+    // 적정체중 평균 체중 오차: ±5
+    // => 사용자로부터 입력받은 몸무게와 적정체중을 비교(적정체중에서 +-5 오차범위)
+    const name = prompt("당신의 이름은?")
+    const cm = prompt("당신의 신장은?")
+    const kg = prompt("당신의 몸무게는?")
+    let result = (cm - 100) * 0.9
+    document.write(`<h1>${name}님은 ${(result + 5 < kg || result - 5 > kg)  ? ("적정체중이 아닙니다") : ("적정체중 입니다.")} </h1>`)
+  </script>
+</body>
+</html>

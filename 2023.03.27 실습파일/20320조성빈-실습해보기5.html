@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>실습해보기5-while, do-while문</title>
+</head>
+
+<body>
+  <h3>while문 입력한 값의 짝수 출력</h3>
+  <hr>
+  <script>
+    let number;
+    let i = 1;
+
+    // parseInt, parseFloat, Number.isInteger 
+    while(true){
+      number = parseInt(prompt("숫자(양수)를 입력해주세요."));
+      if(number < 0)
+        alert("음수가 아닌 양수를 입력해주세요.");
+      else if(isNaN(number))
+        alert("문자가 아닌 숫자를 입력해주세요.");
+      else
+        break;
+    }
+    document.write(`<h6>1부터 ${number}까지의 수 중 짝수 출력</h6>`);
+    while(i <= number){
+      if (i % 2 === 0)
+        document.write(`${i} `);
+      i++;
+    }
+
+  </script>
+</body>
+
+</html>

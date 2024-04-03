@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>실습해보기3-if else: 사용자 학점 구하기 </title>
+</head>
+
+<body>
+  <h3>if-else를 이용한 학점 매기기</h3>
+  <hr>
+  <script>
+    let grade = "";
+    const name = prompt("이름을 입력해주세요");
+    let score = prompt("점수를 입력해주세요");
+    while(score < 0 || score > 100){
+      if (score < 0 || score > 100)
+        score = prompt("100이하의 양수를 입력해주세요.")
+    }
+    if(90 <= score)
+      grade = "A";
+    else if(80 <= score)
+      grade = "B";
+    else if(70 <= score)
+      grade = "C";
+    else if(60 <= score)
+      grade = "D";
+    else
+      grade = "F";
+
+    document.write(`<strong>${name}님</strong>의 ${score}점은 ${grade}입니다.`);
+  </script>
+</body>
+
+</html>

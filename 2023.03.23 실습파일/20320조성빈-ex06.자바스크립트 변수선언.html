@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex06-자바스크립트 변수 선언(variable Declaration)</title>
+</head>
+
+<body>
+  <script>
+    // 1. 재선 O, 재할 O
+    var name = '갱찬희';
+    console.log(name);
+
+    var name = "권근범";
+    console.log(name);
+
+    name = "횡귾하";
+    console.log(name);
+
+    console.log(hoisting);
+    var hoisting = "true";
+
+    var a = 10;
+    for(var a = 0; a < 5; a++){
+      console.log(a);
+    }
+    console.log("a의 값: "+a);
+    // scope(스코프): 변수의 생존 범위
+    // var 지역변수가 우선이됨(스코프 체인)
+
+    // var is normally undefined
+
+    // 2. let
+    var a = 10;
+    for(let a = 0; a < 5; a++){
+      console.log(a);
+    }
+    console.log("a의 값: "+a);
+
+    let fruit = "banana";
+    console.log(ruit);
+
+    fruit = "orange";
+    console.log(fruit);
+
+    const Pi = 3.141592;
+
+
+    console.lo(Pi)
+    // 재선언은 let, const 둘다 불가능, 재활당은 let을ㄴ 저덜ㅅ
+    // let:재활당이 필요한 경우 한정 
+    // ddcoddt
+
+    const list = ["apple","banana", "orange"]
+    list.path("grape");
+
+    // 배열은 창조형이기 떄문에 데이터의 주소를 대입할 수 있어 const임에도 Array.push가 가능함
+  </script>
+</body>
+</html>

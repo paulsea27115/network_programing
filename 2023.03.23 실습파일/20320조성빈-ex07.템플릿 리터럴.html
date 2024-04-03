@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex07-템플릿 리터럴(Template literal)+String method</title>
+</head>
+
+<body>
+    <script>
+        console.log(3+3)
+        console.log(`3*3의 정답은 '${3*3}'입니다.`);
+
+        const a = 3;
+        const b = 3;
+        console.log(`a X b = ${a*b}`)
+        // ES6 string method
+        // 1. startsWith():비교하는 문자열에서 시작 String이 동일한지 비교
+        // 2. endsWith(): 비교하는 문자열에서 끝 String이 동일한지 비교
+        // 3. includes(): 문자열 포함여부 비교
+
+        const str = "Hello World";
+        const matchStr = "hello";
+        const matchStr2 = "world!";
+        console.log(str.startsWith(matchStr));
+        console.log(str.endsWith(matchStr2));
+        console.log(str.includes("Hello"));
+
+
+    </script>
+</body>
+
+</html>
