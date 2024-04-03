@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습해보기3.setInterval() 함수</title>
+
+    <style type="text/css">
+        #toggle {
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            font-size: 70px;
+        }
+        .toggle1 {
+            background: red;
+        }
+        .toggle2 {
+            background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <input type="button" value="start"/>
+        <input type="button" value="stop"/>
+    </p>
+    <div class="toggle1" id="toggle">
+        짠!
+    </div>
+
+    <script>
+        const btns = document.querySelectorAll("input");
+        const square = document.querySelector("div#toggle");
+        let check = true, interval= null;
+
+        const toggle = ()=>{
+            square.classList.toggle("toggle1");
+            square.classList.toggle("toggle2");
+        }
+
+        const start = ()=>{
+            if(check){
+                alert("중복입니다. 먼저 지워주세요")
+            } else {
+                interval = setInterval(toggle, 1000)
+                check = true;
+            }
+        }
+
+        const _stop = ()=>{
+            clearInterval(interval);
+            check = false;
+        }
+
+        window.onload = ()=>{
+            interval = setInterval(toggle, 1000)
+        }
+        
+        btns.forEach((e)=>{
+            e.addEventListener("click",(e)=>{
+                if(e.currentTarget.value === "stop") _stop();
+                else {start();}
+            })
+        })
+       
+    </script>
+</body>
+
+</html>

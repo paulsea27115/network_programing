@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ex02.이벤트 객체 전달받기</title>
+</head>
+
+<body>
+  <p id="p" onmouseover="this.style.background='blue'" onmouseout="this.style.background='transparent'">마우스를 올려 보세요</p>
+  <button>클릭하세요1</button>
+  <button>클릭하세요2</button>
+  </br><button style="margin-top:10px">클릭하세요2 이벤트 제거</button>
+  </br><button style="margin-top:10px">버튼 이동</button>
+  <script>
+    const btns = document.querySelectorAll("button");
+    // 1. 타입 받기
+    btns[0].addEventListener("dblclick", e => {
+      alert(`event typr : ${e.type}, event targe : ${e.target}`)
+      console.log(e.target.nodeName)
+    });
+    const click_event = (e)=>{
+      alert("type : " + e.type)
+      console.log(event.target)
+    }
+    btns[1].addEventListener("click",click_event);
+    btns[2].addEventListener("click",()=>{
+      btns[1].removeEventListener("click",click_event)
+      console.log("deleted")
+    });
+    btns[3].addEventListener("click",(e)=>{
+      const parentElement = e.target.parentElement
+      parentElement.insertBefore(e.target,parentElement.firstChild);
+    })
+  </script>
+</body>
+
+</html>

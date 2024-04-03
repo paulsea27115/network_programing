@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>실습해보기6-Function을 이용한 로그인</title>
+</head>
+
+<body>
+  <h3>함수를 활용한 로그인</h3>
+  <hr>
+  <script>
+    const cur_id = "JsKing";
+    const cur_pwd = "1234"
+    
+    let login = (id,pwd)=>{
+      if (id === cur_id && pwd === cur_pwd){
+        return [id,pwd];
+      } else {
+        if (cur_id !== id)
+          alert("존재하지 않는 아이디입니다.")
+        else
+          alert("비밀번호를 잘못 입력했습니다.")
+        return login(prompt("아이디를 입력해주세요"), prompt("비밀번호를 입력해주세요"));
+      }
+    }
+    
+    let get_id = prompt("아이디를 입력해주세요");
+    let get_pwd = prompt("비밀번호를 입력해주세요");
+    
+    let login_list = login(get_id,get_pwd)
+
+    document.write(`${login_list[0]}님 방문을 환영합니다.`);
+  </script>
+</body>
+
+</html>

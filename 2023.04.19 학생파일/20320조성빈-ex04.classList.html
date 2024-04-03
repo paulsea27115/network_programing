@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classList</title>
+    <style>
+        .select{
+            background-color: #0f0 !important;
+        }
+        .replace{
+            background-color: orange !important;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="test" style="background: #FF0000; width: 200px; font-size: 50px; margin-bottom: 20px;">div</div>
+    <button>1.Add</button>
+    <button>2.Toggle</button>
+    <button>3.Remove(select)</button>
+    <button>4.Remove(replace)</button>
+    <button>5.Replace(select)</button>
+    <button>6.Contains</button>
+    <button>7.AllRemove</button>
+    <script>
+        const btns = document.querySelectorAll("button");
+        const text = document.querySelector("#test");
+        const remove_rep = (e)=>{
+            e.classList.remove("replace");
+        }
+        const remove_sel = (e)=>{
+            e.classList.remove("select");
+        }
+        const remove_all = (e)=>{
+            remove_rep(e);
+            remove_sel(e);
+        }
+        const check = (e)=>{
+            return text.classList.contains(e);
+        }
+        
+        btns.forEach((e,idx)=>{
+            e.addEventListener("click", ()=>{
+                switch(idx){
+                    case 0:
+                        text.classList.add("select");
+                        break;
+                    case 1:
+                        text.classList.toggle("select");
+                        break;
+                    case 2:
+                        remove_sel(text);
+                        break;
+                    case 3:
+                        remove_rep(text);
+                        break;
+                    case 4:
+                        text.classList.replace("select", "replace");
+                        break;
+                    case 5:
+                        if(check("select") || check("replace")){
+                            alert(`클래스 ${text.className}가 있음`)
+                        } else {
+                            alert("클래스가 없음")
+                        }
+                        break;
+                    case 6:
+                        remove_all(text);
+                        break;
+                }
+            })
+        });
+        // add버튼 클릭시 select 클래스 추가
+        // select 있으면 제거 없으면 추가
+        // remove select
+        // remove replace
+        // replace select 클래스를 replace 로 변경
+        // contains 경고창 출력 : 클래스가 없으면 없은 반대면 "클래스명 "있음
+        // AllRemove 모든 요소 제거
+    </script>
+</body>
+
+</html>

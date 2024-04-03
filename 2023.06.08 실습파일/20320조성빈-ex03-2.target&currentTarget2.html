@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex03-1</title>
+  <style>
+    ul{
+      line-height: 30px;
+      font-size: 20px;
+    }
+
+    li.active{
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <h1>target & 버블링</h1>
+  <div class="content">
+
+  </div>
+  <script>
+    const content = document.querySelector('div.content');
+    let ul = document.createElement('ul');
+    let li1 = document.createElement('li');
+    let li2 = document.createElement('li');
+    let li3 = document.createElement('li');
+    
+    ul.setAttribute('style','list-style:decimal')
+    
+    li1.textContent = "First item";
+    li2.textContent = "Second item";
+    li3.textContent = "Third item";
+
+    ul.append(li1,li2,li3);
+    content.appendChild(ul)
+
+    document.querySelector('ul').addEventListener('click', (e)=>{
+      e.target.classList.toggle('active')
+    });
+    
+  </script>
+</body>
+</html>

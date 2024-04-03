@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            font-size: 30px;
+            line-height: 50px;
+        }
+        li{
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="animal">
+        <li class="mammalia">포유류
+            <ul class="mammalia_list">
+                <li class="m_list">돼지</li>
+                <li class="m_list">소</li>
+                <li class="m_list">사자</li>
+            </ul>
+        </li>
+        <li class="brids">조류
+            <ul class="brids_list">
+                <li class="b_list">참새</li>
+                <li class="b_list">까치</li>
+                <li class="b_list">오리</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // htmlcollection getElementsByTagName() getElementsByClassName()
+        // 인자, 매게변수, 파라미터
+        const change = (e)=>{
+            e.style.color = "pink";
+            e.style.listStyle = "None";
+        }
+
+        const changeRed = (e)=>{
+            e.style.color = "red";
+            e.style.listStyle = "circle";
+        }
+
+        const animal = document.getElementsByClassName("m_list");
+        // for(const item of animal){
+        //     item.style.color = "pink";
+        //     item.style.listStyle = "None";
+        // }
+        [...animal].forEach(e=>change(e));
+
+        animal[1].classList.remove("m_list");
+        for(const item of animal){
+            changeRed(item);
+        }
+
+        // NodeList 
+        const birds = document.querySelectorAll(".b_list");
+
+        console.log(animal,birds);
+
+        birds.forEach(e=>change(e));
+        
+        birds[1].classList.remove("b_list");
+
+        birds.forEach(e=>changeRed(e));
+    </script>
+</body>
+</html>

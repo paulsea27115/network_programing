@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>2.자바스크립트 DOM연습</title>
+</head>
+<body>
+    <h1 id="first">HTML 요소(element)를 찾는방법</h1>
+    <ul id="container_1" class = "container1">
+        <li id="li1">HTML</li>
+        <li class="li2">CSS</li>
+        <li id="li3">JavaScript</li>
+    </ul>
+    <ol id="container_2" class = "container2">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ol>
+
+    <script type="text/javascript">
+
+    // getElementById() 사용
+    // id 'first'를 찾아서 h1 태그의 제목의 색상을 red로 변경
+        const h1_tag = document.getElementById("first");
+        h1_tag.style.color = "red"; 
+    // getElementsByTagName() 사용
+    // 전체 li 태그를 찾아서 배경색을 모두 lightgreen으로 변경
+        const li_list = Array.from(document.getElementsByTagName("li"));
+        for(let item of li_list){
+            item.style.backgroundColor = "lightgreen";   
+        }
+        const example = [...li_list]
+        console.log(example)
+        // li_list.forEach((item)=>{
+        //     item.style.backgroundColor = "lightgreen"; 
+        // })
+    // getElementsByClassName() 사용
+    // class 'li2'을 찾아서 배경색을 gray로 변경
+        const li_2 = document.getElementsByClassName("li2");
+        console.log(li_2)
+        li_2[0].style.backgroundColor = "gray";
+    // querySelector() 사용
+    // CSS 선택자로 li3를 찾아서 gray로 배경색 변경
+        const li_3 = document.querySelector("#li3");
+        console.log(li_3);
+        li_3.style.backgroundColor = "gray";
+    // querySe0lectorAll() 사용
+    // CSS 선택자로 전체 li 태그를 찾아서 배경색을 모두 gray로 변경
+        // 쿼리 셀랙터 All은 NodeList 형태로 받기때문에 가능하다.
+        const li_list2 = document.querySelectorAll("li");
+
+        console.log(li_list2);
+        for(let item of li_list2){
+            item.style.backgroundColor = "gray";
+        }
+        li_list2.forEach((item)=>{
+            item.style.backgroundColor = "gray";
+        });
+    </script>
+</body>
+</html>

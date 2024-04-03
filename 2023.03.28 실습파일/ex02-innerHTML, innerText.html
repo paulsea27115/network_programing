@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ex03-innerHTML & innerText</title>
+</head>
+
+<body>
+  <h1>What Can JavaScript Do?</h1>
+  <hr>
+  <p id="text">JavaScript can change HTML content.</p>
+  <input type="button" value="Click innerHTML">
+  <input type="button" value="Click innerText">
+  <script>
+    let text = document.querySelector("#text");
+    const btn = document.getElementsByTagName("input");
+
+    btn[0].addEventListener("click", ()=>{
+      text.innerHTML = "<h2>Hello JavaScript!</h2>";
+    });
+
+    btn[1].addEventListener("click", ()=>{
+      // text.innerText = "hello~";
+      text.textContent = "I love JavaScript";
+    });
+
+    // textContent: 노드의 모든 요소를 반환
+    // innerText: "사람이 읽을 수 있는 요소"만 처리
+    // - 사람이 읽을 수 없는 요소=> display:none(렌더트리에 포함X)  
+
+    
+  
+  </script>
+</body>
+
+</html>

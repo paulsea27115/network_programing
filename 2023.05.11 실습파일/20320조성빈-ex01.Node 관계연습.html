@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex01.Node관계 연습</title>
+  <style>
+    body {
+      background-color: aliceblue;
+    }
+
+    li {
+      line-height: 30px;
+    }
+
+    .list_style {
+      background-color: aqua;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="title">Node관계 연습</h1>
+  <div class="container">
+    <div class="library">
+      <p id="one" class="book">1번</p>
+      <p id="two" class="book">2번</p>
+    </div>
+    <ul id="tutorial">
+      <li class="html">HTML</li>
+      <li class="css">CSS</li>
+      <li class="css3">CSS3</li>
+      <li class="javascript">JavaScript</li>
+      <li class="jquery">jQuery</li>
+    </ul>
+    <input type="button" value="childNodes">
+    <input type="button" value="children">
+    <input type="button" value="모든 li태그를 빨간색">
+    <p id="result"></p>
+  </div>
+  <script>
+    const library = document.querySelector('.library');
+    const tutorial = document.querySelector('#tutorial');
+    const li_list1 = tutorial.children;
+    const li_list2 = tutorial.childNodes;
+    const btns = document.querySelectorAll('input[type=button]');
+    const res = document.querySelector('p#result');
+    
+    const books = library.childNodes;
+
+    let text = "";
+
+    console.log(books)
+
+    const childNodes = ()=>{
+      for(let item in li_list2){
+        console.log(item, li_list2)
+        text += li_list2[item].nodeName + "<br>";
+      }
+      res.innerHTML = text;
+    }
+
+    const children = ()=>{
+      for(let item in li_list1){
+        text += li_list1[item].nodeName + "<br>";
+      }
+      res.innerHTML = text;
+    }
+
+    btns.forEach((el,idx)=>{
+      text = "";
+      el.addEventListener('click',()=>{
+        switch(idx){
+          case 0:childNodes();break;
+          case 1:children();break;
+          case 2:for(let item of li_list1){item.style.color = 'red'}
+        }
+      })
+    })
+
+    // 부모 위치 프로퍼티
+    // 1. parentNode 와 2. parentElement의 차이
+    // 1. 종류에 상관없이 부모노드 반환
+    // 2. 부모 '요소노드'를 반환
+
+    const first_li = document.querySelector(".html");
+    const li_el = first_li.parentElement; 
+    const li_node = first_li.parentNode;
+    
+    console.log(li_node, li_node);
+    console.log(document.documentElement.parentNode, document.documentElement.parentElement)
+
+    console.log(tutorial.firstChild, tutorial.lastChild)
+    console.log(tutorial.firstElementChild)
+
+    const jquery = document.querySelector(".jquery");
+    console.log(jquery.previousSibling);
+    console.log(jquery.previousElementSibling);
+
+  </script>
+</body>
+</html>

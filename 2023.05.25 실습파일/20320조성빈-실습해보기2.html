@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM조작</title>
+  <style>
+    input {
+      margin-bottom: 20px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <p style="font-size: 30px;">버튼을 누르면 생성 태그</p>
+  <div id="content">
+    <span>
+      <input type="button" value="h3 텍스트 생성">
+    </span>
+    </br>
+    <span>
+      <input type="button" value="네이버 링크 생성">
+    </span>
+    </br>
+    <span>
+      <input type="button" value="이미지 생성">
+    </span>
+    </br>
+    <span>
+      <input type="button" value="모두 삭제">
+    </span>
+  </div>
+
+  <script>
+    const btns = document.querySelectorAll("input[type=button]");
+    let h3,a,img,p; 
+
+    btns.forEach((el, idx)=>{
+      el.addEventListener("click",(e)=>{
+        switch(idx){
+          case 0:
+            h3 = document.createElement("h3");
+            h3.style.display = "inline";
+            h3.textContent = "h3 텍스트 생성 완료";
+            e.target.parentElement.appendChild(h3);
+            break;
+          case 1:
+            a = document.createElement("a");
+            a.href = "http://naver.com/";
+            a.textContent = "http://naver.com/";
+            e.target.parentElement.appendChild(a);
+            break;
+          case 2:
+            img = document.createElement("img");
+            img.src = "./profile1.png";
+            img.style.width = "100px";
+            img.style.height = "100px";
+            e.target.parentElement.appendChild(img);
+            break;
+          case 3:
+            document.querySelector("div#content").remove();
+            p = document.createElement("p");
+            p.style.fontSize = "px";
+            p.textContent = "모두 삭제 되었습니다.";
+            document.querySelector("body").insertBefore(p,document.querySelector("body").children[1]);
+            break;
+        }
+      })
+    })
+
+  </script>
+</body>
+
+</html>

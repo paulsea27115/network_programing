@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습해보기5.이벤트 디폴트 행동취소2</title>
+</head>
+
+<body>
+    <h1>구구단을 맞춰보아요</h1>
+    <p id="gugu"></p>
+    <form class="gugu_form">
+        정답: <input type="text" class="result">
+        <input type="submit" value="입력">
+    </form>
+    <h3 id="answer"></h3>
+
+    <script>
+      let a,b,res
+      const inputs = document.querySelectorAll('input');
+      const problem = document.querySelector('p');
+
+      const reset = ()=>{
+        problem.textContent = ""
+        a = parseInt(Math.random()*9+1)
+        b = parseInt(Math.random()*9+1)
+        res = a * b
+        problem.appendChild(document.createTextNode(`${a} X ${b} = ?`))
+      }
+
+      reset();
+      
+      inputs[1].addEventListener('click',(e)=>{
+        if(inputs[0].value.trim() === "" || inputs[0].value === undefined){
+          alert("입력을 다시하세요");
+        } else {
+          const ans = document.querySelector("h3#answer");
+
+          let text = "";
+          let int_input = parseInt(inputs[0].value);
+          console.log(typeof int_input)
+
+          if (int_input == res) {            
+            text = document.createTextNode("정답!");
+            ans.appendChild(text);
+            reset();
+          } else {
+            text = document.createTextNode("틀렸어 다시해");
+            ans.appendChild(text);
+          }
+          ans.appendChild(document.createElement("br"))
+        }
+      })
+      document.querySelector("form.gugu_form").addEventListener("submit",(e)=>{
+        e.preventDefault();
+        console.log(e);
+      });
+    
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex09-자바스크립트 함수2</title>
+</head>
+<body>
+<script>
+  // arguments : 매개변수가 없는 함수 정의문에서 참조하는 배열(유사 배열)
+  // - length 배열 매소드 사용 X
+  // - arguments 는 함수 내부에 접근 가능
+  // => 매개변수의 갯수가 정확하게 정해지지않는 함수나, 전달된 매개변수의 갯수에 따라 처리를 해줘야하는 함수
+    const arg = function(){
+        let sum=0;
+        for (let i=0; i<arguments.length; i++){
+            document.write(`${i}: ${arguments[i]}<br>`)
+            sum+=arguments[i];
+        }
+        return sum;
+    }
+    document.write(`result: ${arg(1,2,3)}`)
+    // arrow function 으로 할시 arguments is not defined 애러발생
+    // - arguments 변수가 전달 되지 않음(call, apply,bind)
+    
+    const test1 = function(){
+        return arguments
+    }
+    console.log(test1(1,2,3,4,5,6))
+
+    const test2 = (...rest)=>{
+        console.log(rest);
+    }
+    test2(1,2,3,4)
+
+    // rest 파라미터 : 정해지지 않는 인수들을 배열로 나타낼수 있게 해줌
+    // - 객체 배열, 함수의 매개변수에서 사용가능
+
+    // - arguments 는 유사배열, rests는 배열
+</script>
+</body>
+</html>

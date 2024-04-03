@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.자바스크립트 DOM연습</title>
+  <style>
+    body {
+      margin: 20px;
+      padding: 20px;
+      line-height: 1;
+      font-size: 1em;
+      color: #000;
+    }
+
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      margin-top: 20px;
+    }
+
+    .title {
+      margin: 0;
+      padding: 0;
+      font-size: 1.5em;
+      font-weight: 500;
+    }
+
+    .container {
+      margin-top: 35px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="title">1.자바스크립트 DOM연습</h1>
+  <div class="container">
+    <ul id="tutorial">
+      <li class="html">HTML</li>
+      <li class="css">CSS</li>
+      <li class="css3">CSS3</li>
+      <li class="javascript">JavaScript</li>
+      <li class="jquery">jQuery</li>
+      <li class="blank"></li>
+    </ul>
+    <p id="portfolio">portfolio</p>
+  </div>
+  <script>
+    const tutorial = document.getElementById("tutorial");
+    console.log(tutorial);
+
+    const list = document.getElementsByTagName("li");
+    console.log(list[1]);
+    console.log(list.item(1));
+    console.log(`li length: ${list.length}`);
+    
+    for(let i = 0; i < list.length; i++){
+      list[i].style.color = "white";
+      list[i].style.backgroundColor = "blue";
+    }
+    
+    // for of
+    for(let item of list){
+      item.style.backgroundColor = "green";
+    }
+    
+    // for each
+    const liList = Array.from(list);
+    console.log(liList)
+    liList.forEach((li) => {
+      li.style.backgroundColor = "skyblue";
+    });
+    
+  </script>
+</body>
+</html> 

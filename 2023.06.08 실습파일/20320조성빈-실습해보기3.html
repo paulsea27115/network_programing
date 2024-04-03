@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+        a{
+      text-decoration: none;
+      color: black;
+      border-bottom: 2px solid black;
+    }
+    a:hover{
+      color: aquamarine;
+      border-bottom: 2px solid aquamarine;
+      animation: a_hover;
+      animation-duration: 0.5s;
+    }
+    .myDiv {
+      animation: div_app;
+      animation-duration: 0.5s;
+      background-color: rgb(255, 255, 47);
+      margin: 10px;
+      padding: 10px;
+    }
+    .myDiv:nth-child(odd) {
+      background-color: rgb(226, 110, 100);
+    }
+    .myDiv:hover{
+      animation: div_hover;
+      animation-duration: 0.5s;
+      background-color: rgb(116, 255, 255);
+    }
+    .remove-btn{
+      float: right;
+      margin-right: 20px;
+    }
+
+    @keyframes a_hover {
+      from{
+        color: black;
+        border-bottom: 2px solid black;
+      }
+      to{
+        color: aquamarine;
+        border-bottom: 2px solid aquamarine;
+      }
+    }
+    @keyframes div_app {
+      from{
+        opacity: 0.5;
+      }
+      to{
+        opacity: 0.9;
+      }
+    }
+    @keyframes div_hover{
+      from{
+        background-color: rgb(223, 255, 255);
+      }
+    }
+  </style>
+  <title>실습해보기3.HTML태그동적제어(심화)</title>
+</head>
+
+<body>
+  <h3>DIV 객체를 동적으로 생성, 삽입, 삭제하는 예제</h3>
+  <hr>
+  <p>DOM 트리에 동적으로 객체를 삽입할 수 있습니다.
+    createElement(), appendChild(),
+    removeChild() 메소드를 이용하여 새로운 객체를 생성,
+    삽입, 삭제하는 예제입니다.</p>
+  <a id="create" href="#">DIV 생성</a>
+  <p class="result"></p>
+  <script>
+    const result = document.querySelector(".result");
+    const a_tag = document.querySelector("a");
+    const words = a_tag.previousSibling.previousSibling.innerHTML;
+    let create_div;
+    let create_button;
+    let i = 1;
+
+    const remove_button = (e)=>{
+      e.parentElement.remove();
+      i--;
+      if (result.children.length == 0){
+        console.log(a_tag.previousSibling.previousSibling)
+        a_tag.previousSibling.previousSibling.innerHTML = words + "<h3>모두 삭제됨</h3>";
+      }
+    }
+    
+    const make_button = ()=>{
+      create_button = document.createElement("button");
+      create_button.textContent = "삭제";
+      create_button.setAttribute("onClick", "remove_button(this)");
+      create_button.classList.add("remove-btn");
+      return create_button;
+    }
+
+    const make_div = ()=>{
+      create_div = document.createElement("div");
+      create_div.textContent = i+"번째 div입니다.";
+      create_div.classList.add("myDiv");
+      create_div.appendChild(make_button());
+      result.appendChild(create_div);
+    }
+
+    a_tag.addEventListener("click", (el)=>{
+      a_tag.previousSibling.previousSibling.innerHTML = words;
+      if(result.children.length != 10){
+        make_div();
+        i++;
+      } else
+        alert("overed 10 divs");
+  });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>ex01-CSS3 스타일 동적 변경</title>
+</head>
+<style>
+  .sampleText{
+    /* 크기: 600px, 외곽선: 2px, 폰트크기: 20px, 가운데 정렬, 안쪽여백: 20px */
+    width: 600px;
+    border: 2px solid black;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .wrap{
+    /* 페이지 가운데 정렬 */
+    display: flex;
+    justify-content: center;
+  }
+
+</style>
+
+<body>
+  <h3>CSS 스타일 동적 변경</h3>
+  <hr>
+  <p class="sampleText">This is sample text</p>
+  <div class="wrap">
+    <span>색상 선택:</span>
+    <select name="color" id="colorSelect">
+      <option value="red">빨강</option>
+      <option value="green">초록</option>
+      <option value="blue">파랑</option>
+      <option value="orange">주황</option>
+      <option value="yellow">노랑</option>
+    </select>
+
+    <span>폰트크기 선택:</span>
+    <select name="fontSize" id="fontSelect">
+      <option value="10px">10px</option>
+      <option value="20px">20px</option>
+      <option value="30px" selected>30px</option>
+      <option value="40px">40px</option>
+      <option value="50px">50px</option>
+    </select>
+    <input type="button" value="선택 완료" onclick="change()">
+    <input type="button" value="초기화" onclick="reset()">
+  </div>
+  <script>
+    // select tag => 1. value / 2. text
+    const color_box = document.querySelector("#colorSelect");
+    const font_box = document.querySelector("#fontSelect");
+    const sample_Text = document.querySelector(".sampleText");
+    // value 값 가져오는 방법
+    // color_box.options[color_box.selectedIndex].value
+    // color_box.options[color_box.selectedIndex].text
+    console.log(color_box);
+
+    // change 함수
+    const change = ()=>{
+      sample_Text.style.fontSize = font_box.options[font_box.selectedIndex].value;
+      sample_Text.style.color = color_box.options[color_box.selectedIndex].value;
+    }
+
+    // reset 함수 
+    const reset = ()=>{
+      sample_Text.style.fontSize = '20px';
+      sample_Text.style.color = 'black';
+    }
+
+
+  </script>
+</body>
+
+</html>

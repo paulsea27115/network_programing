@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>실습해보기1.setTimeOut()</title>
+</head>
+<body>
+    <p>버튼 클릭 후 3초 후에 "Hello" 경고창 출력하기</p>
+
+    <button id="btn">Try it</button>
+    <button id="btn2">Stop</button>
+
+    <script>
+        let timer;
+
+        document.querySelector("button#btn").addEventListener("click", (e)=>{
+            timer = setTimeout(()=>{
+                alert("Hello")
+            },3000)
+        })
+
+        document.querySelector("button#btn2").addEventListener("click", (e)=>{
+            clearTimeout(timer);
+        })
+        
+    </script>
+
+</body>
+</html>

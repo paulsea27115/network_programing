@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex09-자바스크립트 함수</title>
+</head>
+<body>
+<script>
+    // 함수 정의 방식
+    // . 함수 선언문, 기명함수 표현식, (익명)함수 표현식, Arrow Functuon
+
+    // 1. 함수 선언문
+    console.log(add(2,3)); // 6
+
+    function add(x,y){
+        return x+y;
+    }
+
+    function add(x,y){
+        return x*y;    
+    }
+
+    console.log(add(14,12)); // 168
+
+    // 호이스팅에 의해 두 함수선언문 모두 맨위로 끌어올려주고
+    // cascading원칙에 따라 나중에 호이스팅된 함수가
+    // 이전에 호출된 함수를 덮어씌우게 됨
+
+    // 2. 가명 함수
+    let add2 = function sum(a,b){
+        return a+b;
+    }
+
+    let plus = add2
+    console.log(add2(2,3));
+    console.log(plus(2,3));
+    
+    // 3. 익명 함수
+    let add3 = function (a,b){
+        return a+b
+    }
+
+    // + Arrow Functions(홧살표 함수)
+    const text1 = function(){
+        console.log("hello");
+    }
+
+    const text2 = ()=>{
+        console.log("hello");
+    }
+
+    text1()
+    text2()
+
+    // eval(), parseInt(), parseFloat()
+    const result = eval("2*3+4*6");
+    console.log(result);
+
+    const decimal = parseInt("32");
+    console.log(decimal);
+
+    const hexDeciaml = parseInt("0xFF");
+    console.log(hexDeciaml);
+
+    const text = parseInt("hello");
+    console.log(text);
+    if(isNaN(decimal)){
+        console.log("Not a Number");
+    }
+</script>
+</body>
+</html>
