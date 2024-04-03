@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>requsetAnimationFrame - 마우스 제어하기2</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <style>
+   * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: black;
+      height: 150vh;
+    }
+    h1 {
+      color: white;
+      /* position: sticky; */
+    }
+    .cursor_item {
+      width: 100px;
+      height: 100px;
+      background: red;
+      /* transform: translate(); */
+    }
+  </style>
+</head>
+
+<body>
+  <h1>test</h1>
+  <div class="cursor_item"></div>
+  <script>
+    let speed = 0.03;
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    const cursor_item = document.querySelector(".cursor_item");
+    const h1 = document.querySelector("h1")
+
+    // requestAnimation
+    // x: 마우스 x좌표
+    // x: 360
+    // mouseX += (x - mouseX) * speed;
+    // mouseX: 마우스 x좌표를 느리게 따라오는 좌표값
+
+   const animateCursor = () => {
+      requestAnimationFrame(animateCursor);
+      cursorX += (mouseX - cursorX) * speed;
+      cursorY += (mouseY - cursorY) * speed;
+      h1.textContent = `x: ${mouseX} mouseX: ${cursorX}`;
+
+      cursor_item.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+    }
+
+    const mouseMove = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    }
+
+    // 이벤트 리스너 등록
+    window.addEventListener('mousemove', mouseMove);
+    animateCursor();
+  </script>
+</body>
+
+</html>

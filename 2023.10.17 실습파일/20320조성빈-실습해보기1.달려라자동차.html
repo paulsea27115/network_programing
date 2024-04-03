@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습해보기1.Car Animation</title>
+  <style>
+    img {
+      width: 500px;
+    }
+    p {
+      font: bold;
+      font-size: 25px;
+    }
+    input[type="button"] {
+      transition: 0.5s;
+      margin-top: 5px;
+      border: 0px;
+      background-color: rgb(86, 231, 231);
+      border-radius: 15px;
+      padding: 5px 15px;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <p id="title1">setInterval Animation</p>
+  <img id="car" src="./img/car.png" alt="car" />
+  <div>
+    x-position:<span id="value">0</span>
+  </div>
+  <input type="button" id="btn1" value="START!">
+  <p id="title2">requestAnimationFrame Animation</p>
+  <img id="car2" src="./img//car2.png" alt="car" />
+  <div>
+    x-position:<span id="value2">0</span>
+  </div>
+  <input type="button" id="btn2" value="START!">
+  <script>
+    const cars = document.querySelectorAll("img")
+    const btns = document.querySelectorAll("input[type='button']")
+    const x = document.querySelectorAll("span")
+    const around = window.innerWidth - 500
+    let n1,n2
+    let i1 = 5
+    let i2 = 5
+    let animtion
+    let interver
+    let flag = false
+
+    const setInterval_ = ()=>{
+      if (i1 > around) {
+        n1.value = "START!"
+        n1.style.backgroundColor = "rgb(86, 231, 231)"
+        clearInterval(interver)
+      }
+      cars[0].style.transform = "translateX("+ i1 + "px)"
+      x[0].textContent = i1
+      i1 += 1
+    }
+
+    const requestAnimationFrame_ = () => {
+      if (i2 > around) {
+        n2.value = "START!"
+        n2.style.backgroundColor = "rgb(86, 231, 231)"
+        cancelAnimationFrame(animation)
+        return
+      } else if (!flag) {
+        cancelAnimationFrame(animation)
+        return
+      }
+      cars[1].style.transform = "translateX("+ i2 + "px)"
+      x[1].textContent = i2
+      i2 += 4
+      animtion = requestAnimationFrame(requestAnimationFrame_)
+    }
+
+    btns.forEach((e)=>{
+      e.addEventListener("click",(e)=>{
+        const n = e.currentTarget
+        if(n.value == "START!") {  
+          n.value = "STOP!"
+          n.style.backgroundColor = "rgb(231, 86, 86)"
+          if(n.id == "btn1") {
+            if (i1 > around) {
+              i1 = 5
+            }
+            n1 = n
+            interver = setInterval(setInterval_, 4.5);
+          } else {
+            if (i2 > around) {
+              i2 = 5
+            }
+            n2 = n
+            animtion = requestAnimationFrame(requestAnimationFrame_)
+            flag = true
+          }
+        } else {
+          n.value = "START!"
+          n.style.backgroundColor = "rgb(86, 231, 231)"
+          if(n.id == "btn1") {
+            clearInterval(interver)
+          } else {
+            flag = false
+            cancelAnimationFrame(animation)
+          }
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

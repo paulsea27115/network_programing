@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>실습해보기4.setInterval</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <style>
+    html {
+      height: 100%;
+    }
+    body {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column-reverse;
+    }
+    .rocket {
+      height: auto;
+      width: 150px;
+    }
+    .text {
+      font-size: 50px;
+      padding-bottom: 225px;
+    }
+  </style>
+</head>
+
+<body>
+  <img class="rocket" src="./img/rocket.png" alt="로켓">
+  <div class="text">yPos</div>
+  <script>
+    const rocket = document.querySelector(".rocket");
+    const text = document.querySelector(".text");
+
+    const remove = () => {
+	  cancelAnimationFrame(animation);
+      text.textContent = "STOP!"
+    }
+	  let animation
+    const load2 = () => {
+      rocket.style.transform = "translateY(" + -i +"px)";
+      text.textContent = i
+      i+=10
+      if (i > 500) {
+        remove();
+		return
+      }
+	  animation = requestAnimationFrame(load2);
+    }
+
+    let i = 0;
+    requestAnimationFrame(load2);
+
+    window.addEventListener("click", remove)    
+
+  </script>
+</body>
+
+</html>

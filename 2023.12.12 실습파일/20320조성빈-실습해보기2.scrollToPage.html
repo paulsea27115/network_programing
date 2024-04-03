@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실습해보기2.scrollToPage</title>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      header {
+        width: 100vw;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      body {
+        width: 100vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      body::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+      }
+      ul {
+        list-style: none;
+        text-decoration: none;
+      }
+      li{
+        text-decoration: none;
+      }
+      .nav {
+        position: fixed;
+        top: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        margin-top: 10px;
+        padding: 10px 35px;
+        background-color: rgba(0, 0, 0, 0.496);
+        border-radius: 25px;
+      }
+      .nav li {
+        cursor: pointer;
+        color: white !important;
+        font-size: 15px;
+        /* font-weight: bolder; */
+        margin: 5px 15px;
+      }
+      li.active {
+        font-weight: bold;
+        border-bottom: 2px solid white !important;
+      }
+      .content {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white !important;
+        font-size: 50px;
+        font-weight: bolder;
+      }
+      .content:nth-child(odd) {
+        background-color: aquamarine;
+      }
+      .content:nth-child(even) {
+        background-color: cadetblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <ul class="nav">
+        <li class="active">1번</li>
+        <li>2번</li>
+        <li>3번</li>
+        <li>4번</li>
+        <li>5번</li>
+        <li>6번</li>
+        <li>7번</li>
+        <li>8번</li>
+        <li>9번</li>
+        <li>10번</li>
+        <li>11번</li>
+        <li>12번</li>
+        <li>13번</li>
+      </ul>
+    </header>
+
+    <section class="content">section 1</section>
+    <section class="content">section 2</section>
+    <section class="content">section 3</section>
+    <section class="content">section 4</section>
+    <section class="content">section 5</section>
+    <section class="content">section 6</section>
+    <section class="content">section 7</section>
+    <section class="content">section 8</section>
+    <section class="content">section 9</section>
+    <section class="content">section 10</section>
+    <section class="content">section 11</section>
+    <section class="content">section 12</section>
+    <section class="content">section 13</section>
+
+    <script>
+      const navbar = document.querySelector('.nav');
+      const contents = document.querySelectorAll('.content');
+
+      const lis = Array.from(navbar.children)
+
+      const contents_len = Array()
+
+      const reset = ()=>{
+        for(let li of lis)
+          li.classList.remove("active");
+      }
+
+      const clickToMove = (current)=>{
+        reset()
+        for(let content of contents) {
+          if(content.dataset.number == current.dataset.number) {
+            window.scrollTo({top:content.offsetTop,behavior:"smooth"})
+            break
+          }
+        }
+      }
+
+      const scrollToMove = (e)=>{
+        for(let i = 0; i < contents.length; i++) {
+          if(window.scrollY <= contents_len[i]){
+            for(let li of lis){
+              if(li.dataset.number == i + 1){
+                reset()  
+
+                li.classList.add('active')
+                console.log(contents_len[i])
+                break
+              } 
+            }
+            break
+          }
+        }
+      }
+
+      lis.forEach((e, idx)=>{
+        e.dataset.number = idx + 1;
+        contents[idx].dataset.number = idx + 1;
+
+        contents_len.push(contents[idx].offsetTop + contents[idx].offsetHeight - 10)
+        console.log(contents[idx].offsetTop)
+        
+        e.addEventListener("click", (el)=>{  
+          current = el.currentTarget
+          clickToMove(current)
+        });
+      })
+
+      window.addEventListener('scroll', scrollToMove,false);
+
+
+    </script>
+  </body>
+</html>

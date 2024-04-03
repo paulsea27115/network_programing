@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>requsetAnimationFrame - 마우스 제어하기1</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: black;
+      overflow: scroll;
+      height: 150vh;
+    }
+    h1 {
+      color: white;
+      /* position: sticky; */
+    }
+    div {
+      position:fixed;
+    }
+    .cursor_item {
+      width: 100px;
+      height: 100px;
+      background: red;
+      /* transform: translate(); */
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1 class="client">clientX,Y position</h1>
+    <h1 class="page">pageX,Y position</h1>
+  </div>
+  <div class="cursor_item"></div>
+  <script>
+    const item = document.querySelector('.cursor_item');
+    const h = document.querySelectorAll('h1')
+
+    window.addEventListener('mousemove',(e)=>{
+      console.log("move", e.clientX, e.clientY);
+      h[0].textContent = `clientX,Y : ${e.clientX}px, ${e.clientY}px`
+      h[1].textContent = `pageX,Y : ${e.pageX}px, ${e.pageY}px`
+      item.style.transform= `translate(${e.clientX}px, ${e.clientY-85}px)`
+    })
+  </script>
+</body>
+
+</html>
